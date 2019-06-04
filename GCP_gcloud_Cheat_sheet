@@ -1,0 +1,150 @@
+
+		------------Google Cloud Platform - Cloud SDK setup and commands---------------- 
+
+
+1. Installation in Linux(RHEL,Fedora,Centos)
+
+# Update YUM with Cloud SDK repo information:
+
+    #sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
+	[google-cloud-sdk]
+	name=Google Cloud SDK
+	baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+	enabled=1
+	gpgcheck=1
+	repo_gpgcheck=1
+	gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+	       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+	EOM
+
+
+# The indentation for the 2nd line of gpgkey is important.
+
+# Install the Cloud SDK
+
+	#sudo yum install google-cloud-sdk
+
+FOR ANY DOUBTS : https://www.youtube.com/watch?v=KpYO6Ru8MOI
+-------------------------------------------------------------------------------------------------------------
+2. Initialize the SDK
+
+	# gcloud init
+
+	#Accept the option to log in using your Google user account:
+
+            To continue, you must log in. Would you like to log in (Y/n)? Y
+
+#In your browser, log in to your Google user account when prompted and click Allow to grant permission to access Google Cloud Platform resources.
+
+#At the command prompt, select a Cloud Platform project from the list of those where you have Owner, Editor or Viewer permissions:
+
+	Pick cloud project to use:
+	 [1] [my-project-1]
+	 [2] [my-project-2]
+	 ...
+	 Please enter your numeric choice:
+
+If you only have one project, gcloud init selects it for you.
+
+
+	#If you have the Google Compute Engine API enabled, gcloud init allows you to choose a default Compute Engine zone:
+
+	Which compute zone would you like to use as project default?
+	 [1] [asia-east1-a]
+	 [2] [asia-east1-b]
+	 ...
+	 [14] Do not use default zone
+	 Please enter your numeric choice:
+
+-------------------------------------------------------------------------------------------------------------
+
+********** Run core gcloud commands **********
+
+1. To list accounts whose credentials are stored on the local system:
+
+	#gcloud auth list
+
+
+2. To list the properties in your active SDK configuration:
+
+	#gcloud config list 
+
+3. To view information about your Cloud SDK installation and the active SDK configuration:
+
+	#gcloud info
+
+
+4. To view information about gcloud commands and other topics from the command line:
+
+   	# gcloud help
+
+   #For example, to view the help for gcloud compute instances create:
+
+    	# gcloud help compute instances create
+
+    ----gcloud displays a help topic that contains a description of the command, a list of command flags and arguments, and examples of how to use it.-----
+
+
+5. To get the list of all running instances
+
+ 	# gcloud compute instances list 
+
+6. You can list/install/update these tools by using below command
+
+	#gcloud components list
+
+7. to change the project or set a particular project
+
+	# gcloud config set project <name of project >
+
+8. To list all credentialed accounts and identify the current active account, run:
+
+	# gcloud auth list
+
+9. to set a particular service account with project name 
+
+ 	# gcloud auth activate-service-account --project=<project-name> --key file=<key file name>.json
+
+10. -----Location of gcloud file after setup---------------
+
+	# /.config/gcloud/
+
+11. to get all the regions available with there resources.
+
+	# gcloud compute regions list 
+
+12. to set/change the particular region .
+
+	#  gcloud config set compute/region us-east1
+
+13. To list all the images available to use.
+
+	# gcloud compute images list 
+
+14. creating a instance simply
+ # gcloud compute instances create test2 --image=centos-6
+
+15. To login into the instance we just created
+
+gcloud compute ssh --project devops --zone asia-south1-b test2
+
+16. describing the project 
+	# gcloud compute project-info  describe
+
+17. login through an os user instead of root
+	# gcloud compute os-login ssh-keys add --key-file=gcp_key.pub
+
+18. Show the list of potential machine types: 
+	# gcloud sql tiers list
+
+19. list of all API in gcloud 
+	# gcloud services list --available
+
+20. creating an VPC network 
+ # gcloud compute networks create mani-vpc --subnet-mode=custom 
+
+// setting up custom subnet now -_- 
+
+	#gcloud compute networks subnets create mani-vpc-sub1 --network=mani-vpc --range=10.10.0.0/16 --region=asia-south1
+
+21. 
