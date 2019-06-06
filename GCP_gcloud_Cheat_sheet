@@ -147,4 +147,9 @@ gcloud compute ssh --project devops --zone asia-south1-b test2
 
 	#gcloud compute networks subnets create mani-vpc-sub1 --network=mani-vpc --range=10.10.0.0/16 --region=asia-south1
 
-21. 
+21. gcloud interactive shell environment ( commands to get auto-suggestions and inline help )
+ 	# gcloud components install alpha (installation only)
+	# gcloud alpha interactive 
+
+22. 
+
